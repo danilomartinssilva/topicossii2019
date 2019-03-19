@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/assets/style.css" />
+
+    <title>Documento - Renderizado com Node EJS</title>
+</head>
+<body>
+    <img src="/assets/perfil.jpg" />
+    <h1>Nome: <%= nome %> </h1>    
+    <h2>Idade: <%= idade %> </h2>
+    <h3>Situação</h3>
+    <% if(idade>18) {%>
+        <h3>Adulto</h3>  
+    <% } else {%>      
+        <h3>Adolescente</h3>  
+    <% } %>
+</body>
+</html>
+<script src="/js/teste.js"></script>
