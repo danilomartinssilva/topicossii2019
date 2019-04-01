@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Upload de Arquivos com Nodejs</title>
+    <style type="text/css">
+        *{
+            margin:0 auto;
+            padding:0 auto;
+            background-color: #ededed;
+        }
+        body{
+            text-align:center;
+            margin-top:100px;
+        }
+        .container form{
+            height: 500px;
+            width:500px;
+            background-color:#FFF;            
+        }
+        .botaoUpload {
+            margin-top:30px;
+            width:80px;
+
+        }
+                
+    </style>
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <h1>Upload de Arquivos</h1>        
+    <div class="container">
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="files"  id="file" accept="image/*" />     
+            <button class="botaoUpload">
+                Fazer Upload
+            </button>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Item_sem_imagem.svg/1280px-Item_sem_imagem.svg.png" id="imageSelected" width="400" height="400" />
+        </form>
+    </div>
+</body>
+</html>
+<script>
+    function readUrl(input){
+        
+        if(input.files && input.files[0]){            
+            var reader = new FileReader();
+            reader.onloadend  = function (e){
+                
+                $('#imageSelected ').attr('src',e.target.result);
+            }
+             reader.readAsDataURL(input.files[0]); 
+        }
+    }
+    $('#file').change(function(){
+        readUrl(this);
+    })
+
+
+</script>
