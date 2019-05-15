@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Formulário de HTML - Firebase</title>
+
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+            
+        }
+        html,body{
+            background-color:palegreen;
+            text-align: center;
+            
+        }
+        
+    
+    </style>
+
+    
+
+</head>
+<body>
+    <h1>Formulário do Firebase</h1>
+    <div class="content">
+        <form action="">
+            <input type="file" name="upload" id="upload" />
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
+</body>
+</html>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="/__/firebase/6.0.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#reserved-urls -->
+
+<!-- Initialize Firebase -->
+<script src="/__/firebase/init.js"></script>
+
+<script>
+  // Set the configuration for your app
+  // TODO: Replace with your project's config object
+  var config = {
+    apiKey: "AIzaSyBMo3rCeIQTSvlPmCumGlRq_Luya6ZXyJA",
+    authDomain: "up-firebase-aula.firebaseapp.com",
+    databaseURL: "https://up-firebase-aula.firebaseio.com",
+    projectId: "up-firebase-aula",
+    storageBucket: "up-firebase-aula.appspot.com",
+    messagingSenderId: "711221203651",
+    appId: "1:711221203651:web:34e81a1fb87d4f1f"
+  };
+  firebase.initializeApp(config);
+
+  // Get a reference to the storage service, which is used to create references in your storage bucket
+  var storage = firebase.storage();
+  </script>
