@@ -29,20 +29,18 @@
     <div class="content">
         <form action="">
             <input type="file" name="upload" id="upload" />
-            <button type="submit">Enviar</button>
+            <button type="submit" >Enviar</button>
         </form>
+        <progress value="0" max="100" id="progressBar"></progress>
+        <h6 id="info"></h6>
+
     </div>
 
 </body>
 </html>
 <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="/__/firebase/6.0.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
 
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#reserved-urls -->
-
-<!-- Initialize Firebase -->
-<script src="/__/firebase/init.js"></script>
 
 <script>
   // Set the configuration for your app
@@ -60,4 +58,48 @@
 
   // Get a reference to the storage service, which is used to create references in your storage bucket
   var storage = firebase.storage();
+  const file = document.getElementById("upload");
+  const progressBar = document.getElementById("progressBar");
+  const info = document.getElementById("info");
+  const buckName = "images";
+  file.addEventListener('change',(e)=>{
+      console.log(e);
+      const uploadFile = e.target.files[0];
+      console.log("Informações do arquivo",uploadFile);
+      const storageRef = firebase.storage().ref(`${buckName}/${uploadFile.name}`);
+      const uploadTask = storageRef.put(uploadFile);
+      uploadTask.on('state_changed',(snapshot)=>{
+        let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            progressBar.value = progress;      
+            info.innerHTML =progress+'%';      
+                switch (snapshot.state) {
+                case firebase.storage.TaskState.PAUSED: // or 'paused'
+                console.log('Upload is paused');
+                break;
+                case firebase.storage.TaskState.RUNNING: // or 'running'
+                console.log('Upload is running');
+                break;
+
+            }
+
+      },(error)=>{
+          console.log(error);
+      },()=>{
+          //Função executada quando concluída
+          uploadTask.snapshot.ref.getDownloadURL()
+          .then(function(downloadURL) {
+                    console.log('File available at', downloadURL);
+          });
+      })
+     
+
+  })
+
+  
+ 
+
+
+
+  
+
   </script>
